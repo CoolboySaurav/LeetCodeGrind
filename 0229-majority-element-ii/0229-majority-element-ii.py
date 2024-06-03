@@ -20,10 +20,11 @@ class Solution(object):
         for i in nums:
             countMap[i] += 1
             if len(countMap)>2:
+                newCount = defaultdict(int)
                 for i, v in countMap.items():
-                    countMap[i] = v - 1
-                    if countMap[i] == 0:
-                        del countMap[i]
+                    if v > 1:
+                        newCount[i] = v - 1
+                countMap = newCount
         
         for i in countMap.keys():
             if countNum(i) > n/3:
