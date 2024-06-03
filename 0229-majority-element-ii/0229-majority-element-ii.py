@@ -20,8 +20,10 @@ class Solution(object):
         for i in nums:
             countMap[i] += 1
             if len(countMap)>2:
-                for i in countMap.keys():
-                    countMap[i] -= 1
+                for i, v in countMap.items():
+                    countMap[i] = v - 1
+                    if countMap[i] == 0:
+                        del countMap[i]
         
         for i in countMap.keys():
             if countNum(i) > n/3:
