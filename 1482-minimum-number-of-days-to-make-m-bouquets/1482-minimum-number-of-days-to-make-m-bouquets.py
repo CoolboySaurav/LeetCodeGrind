@@ -21,14 +21,14 @@ class Solution(object):
                     cnt = 0
             numberB += cnt//k
             
-            return numberB
+            return numberB>=m
         
         l,r = min(bloomDay), max(bloomDay)
         ans = -1
         while l <= r:
             mid = (l+r)//2
             
-            if possible(mid) >= m:
+            if possible(mid):
                 ans = mid
                 r = mid - 1
             else:
