@@ -10,7 +10,7 @@ class Solution(object):
         res = [-1]*len(nums1)
         stack = []
         
-        for i in range(len(nums2)-1, -1,-1):
+        for i in xrange(len(nums2)-1, -1,-1):
             curr = nums2[i]
             
             while stack and stack[-1] <= curr:
@@ -24,14 +24,3 @@ class Solution(object):
             stack.append(curr)
         
         return res
-        
-        # for i in range(len(nums2)):
-        #     curr=nums2[i]
-        #     while stack and curr>stack[-1]:
-        #         val=stack.pop()
-        #         idx=num1idx[val]
-        #         res[idx]=curr
-        #     if curr in num1idx:
-        #         stack.append(curr)
-        # return res
-        
