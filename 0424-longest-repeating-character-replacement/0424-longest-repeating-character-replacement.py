@@ -12,7 +12,7 @@ class Solution(object):
             l = 0
             count = 0
 
-            for r in range(len(s)):
+            for r in xrange(len(s)):
                 if s[r] != c:
                     count += 1
 
