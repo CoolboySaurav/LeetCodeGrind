@@ -9,20 +9,28 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        length = 0
+        slow = fast = head
         
-        temp = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
         
-        while temp:
-            length += 1
-            temp = temp.next
+        return slow
+    
+#         length = 0
+        
+#         temp = head
+        
+#         while temp:
+#             length += 1
+#             temp = temp.next
 
 
-        mid = int(length/2)        
-        temp = head
+#         mid = int(length/2)        
+#         temp = head
         
-        while mid > 0:
-            temp = temp.next
-            mid -= 1        
+#         while mid > 0:
+#             temp = temp.next
+#             mid -= 1        
         
-        return temp
+#         return temp
