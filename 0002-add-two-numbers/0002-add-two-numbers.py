@@ -53,26 +53,7 @@ class Solution(object):
         
         return reverse(res.next)
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+     
         
 #         carry=0
 #         tot=0
