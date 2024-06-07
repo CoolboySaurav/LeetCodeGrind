@@ -29,25 +29,3 @@ class Solution(object):
             mid -= 1        
         
         return temp
-        
-        
-        
-        # i=0
-        # curr=head
-        # while curr:
-        #     curr=curr.next
-        #     i+=1
-        # i=i//2
-        # j=0
-        # curr=head
-        # if i%2:
-        #     while j<i:
-        #         curr=curr.next
-        #         j+=1
-        # else:
-        #     while j!=i:
-        #         curr=curr.next
-        #         j+=1
-        # return curr
-
-        
