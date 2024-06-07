@@ -17,11 +17,11 @@ class Solution(object):
             length += 1
             temp = temp.next
 
-        if length % 2:
-            mid = int(length / 2)
-        else:
-            mid = length/2 
-        
+        # if length % 2:
+        #     mid = int(length / 2)
+        # else:
+        #     mid = length/2 
+        mid = int(length/2)        
         temp = head
         
         while mid > 0:
