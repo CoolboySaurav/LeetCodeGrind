@@ -25,18 +25,18 @@ class Solution(object):
             
             for i in xrange(L):
                 curr = q.popleft()
-                if curr:
-                    if leftToRight:
-                        index = i
-                    else:
-                        index = L - i - 1
+                
+                if leftToRight:
+                    index = i
+                else:
+                    index = L - i - 1
 
-                    level[index] = curr.val
+                level[index] = curr.val
 
-                    if curr.left:
-                        q.append(curr.left)
-                    if curr.right:
-                        q.append(curr.right)
+                if curr.left:
+                    q.append(curr.left)
+                if curr.right:
+                    q.append(curr.right)
             
             leftToRight = not leftToRight
             if level:
