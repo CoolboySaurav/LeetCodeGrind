@@ -24,8 +24,6 @@ class Solution(object):
                 return False
             lh=check(cur.left)
             rh=check(cur.right)
-            # if (not lh or not rh):
-            #     return False
-            # return True
             return lh and rh
+        
         return check(cur)
