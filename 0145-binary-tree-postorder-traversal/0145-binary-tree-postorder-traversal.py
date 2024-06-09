@@ -11,59 +11,42 @@ class Solution(object):
         :rtype: List[int]
         """
         
-        res = []
+        # Recursion Solution
+#         res = []
         
-        def travel(node):
-            if not node:
-                return None
+#         def travel(node):
+#             if not node:
+#                 return None
             
-            travel(node.left)
-            travel(node.right)
-            res.append(node.val)
+#             travel(node.left)
+#             travel(node.right)
+#             res.append(node.val)
             
-        travel(root)
+#         travel(root)
+#         return res
+    
+        #Iterative Solution
+        
+        
+          
+        
+        res=[]
+
+        lstack=[]
+        rstack=[]
+        cur=root
+        lstack.append(cur)
+        while lstack:
+            cur=lstack.pop()
+            if cur:
+                rstack.append(cur)
+                if cur.left:
+                    lstack.append(cur.left)
+                if cur.right:
+                    lstack.append(cur.right)
+        while rstack:
+            cur=rstack.pop()
+            res.append(cur.val)        
+                   
         return res
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-#         res=[]
-
-#         lstack=[]
-#         rstack=[]
-#         cur=root
-#         lstack.append(cur)
-#         while lstack:
-#             cur=lstack.pop()
-#             if cur:
-#                 rstack.append(cur)
-#                 if cur.left:
-#                     lstack.append(cur.left)
-#                 if cur.right:
-#                     lstack.append(cur.right)
-#         while rstack:
-#             cur=rstack.pop()
-#             res.append(cur.val)        
-                   
-#         return res
-        
-        
-        
-        
-        # def traverse(root):
-        #     if not root:
-        #         return
-        #     traverse(root.left)
-        #     traverse(root.right)
-        #     res.append(root.val)
-        #     return
-        # traverse(root)
-        # return res
