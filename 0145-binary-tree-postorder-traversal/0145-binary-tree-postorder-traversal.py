@@ -30,23 +30,45 @@ class Solution(object):
         
           
         
-        res=[]
+#         res=[]
 
-        lstack=[]
-        rstack=[]
-        cur=root
-        lstack.append(cur)
-        while lstack:
-            cur=lstack.pop()
-            if cur:
-                rstack.append(cur)
-                if cur.left:
-                    lstack.append(cur.left)
-                if cur.right:
-                    lstack.append(cur.right)
-        while rstack:
-            cur=rstack.pop()
-            res.append(cur.val)        
+#         lstack=[]
+#         rstack=[]
+#         cur=root
+#         lstack.append(cur)
+#         while lstack:
+#             cur=lstack.pop()
+#             if cur:
+#                 rstack.append(cur)
+#                 if cur.left:
+#                     lstack.append(cur.left)
+#                 if cur.right:
+#                     lstack.append(cur.right)
+#         while rstack:
+#             cur=rstack.pop()
+#             res.append(cur.val)        
                    
+#         return res
+    
+    # Single stack solution
+        stack = []
+        res = []
+        cur = root
+
+        while cur or stack:
+            if cur:
+                stack.append(cur)
+                cur = cur.left
+            else:
+                temp = stack[-1].right
+                if not temp:
+                    temp = stack.pop()
+                    res.append(temp.val)
+                    while stack and stack[-1].right == temp:
+                        temp = stack.pop()
+                        res.append(temp.val)
+
+                else:
+                    cur = temp
+
         return res
-        
