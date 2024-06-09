@@ -25,6 +25,7 @@ class Solution(object):
 #         travel(root)
 #         return res
         
+        # Iterative Solution
         if not root:
             return None
         
@@ -46,6 +47,7 @@ class Solution(object):
         
         
         
+        # Optimal Solution
         
         # res=[]
         # stack=[]
@@ -59,28 +61,4 @@ class Solution(object):
         #         cur=stack.pop()
         # return res        
             
-            
-            
-            
-            # while cur:
-            #     stack.append(cur)
-            #     cur=cur.left
-            # cur=cur.right
-            # stack.append(cur)
-            # while stack:
-            #     cur=stack.pop(0)
-            #     res.append(cur.val)
-            #     if 
-            # cur=cur.right
-
-
-
-
-        # def traverse(root):
-        #     if not root:
-        #         return
-        #     res.append(root.val)
-        #     traverse(root.left)
-        #     traverse(root.right)
-        # traverse(root)
-        # return res
+        
