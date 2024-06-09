@@ -10,20 +10,38 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[int]
         """
-        res = []
         
-        def travel(node):
-            if not node:
-                return 
+        # Recursion way
+#         res = []
+        
+#         def travel(node):
+#             if not node:
+#                 return 
             
-            res.append(node.val)
-            travel(node.left)
-            travel(node.right)
+#             res.append(node.val)
+#             travel(node.left)
+#             travel(node.right)
         
-        travel(root)
+#         travel(root)
+#         return res
+        
+        if not root:
+            return None
+        
+        res = []
+        stack = []
+        stack.append(root)
+        
+        while stack:
+            curr = stack.pop()
+            res.append(curr.val)
+            
+            if curr.right:
+                stack.append(curr.right)
+            if curr.left:
+                stack.append(curr.left)
+        
         return res
-        
-        
         
         
         
