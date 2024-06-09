@@ -13,59 +13,35 @@ class Solution(object):
         
         # Recursion Solution
         
-        if not root:
-            return None
+#         if not root:
+#             return None
         
-        res = []
+#         res = []
         
-        def travel(node):
-            if not node:
-                return 
+#         def travel(node):
+#             if not node:
+#                 return 
             
-            travel(node.left)
-            res.append(node.val)
-            travel(node.right)
+#             travel(node.left)
+#             res.append(node.val)
+#             travel(node.right)
         
-        travel(root)
+#         travel(root)
+#         return res
+        
+        
+        # Iterative Solution
+        
+        res=[]
+        stack=[]
+        curr=root
+        while stack or curr:
+            while curr:
+                stack.append(curr)
+                curr=curr.left
+            curr=stack.pop()
+            res.append(curr.val)
+            curr=curr.right
         return res
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        # res=[]
-        # stack=[]
-        # curr=root
-        # while stack or curr:
-        #     while curr:
-        #         stack.append(curr)
-        #         curr=curr.left
-        #     curr=stack.pop()
-        #     res.append(curr.val)
-        #     curr=curr.right
-        # return res
 
 
-
-
-
-
-        # def Traverse(root):
-        #     if not root:
-        #         return
-        #     Traverse(root.left)
-        #     res.append(root.val)
-        #     Traverse(root.right)
-        # Traverse(root)
-        # return res
