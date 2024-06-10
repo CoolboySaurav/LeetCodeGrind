@@ -20,7 +20,6 @@ class Solution(object):
                 parentMap[node.right] = node
                 q.append(node.right)        
         
-        
     def distanceK(self, root, target, k):
         """
         :type root: TreeNode
@@ -31,7 +30,37 @@ class Solution(object):
         parentMap = {}
         self.adjecency(root,parentMap)
         
-        # BFS call for k direction from target
+    
+        q = deque()
+        q.append([target,0])
+        visited = set([target])
+        res = []
+        
+        while q:
+            node, dist = q.popleft()
+            
+            if dist == k:
+                res.append(node.val)
+            
+            for neighbor in [node.left, node.right, parentMap.get(node)]:
+                if neighbor and neighbor not in visited:
+                    q.append([neighbor, dist + 1])
+                    visited.add(neighbor)
+        
+        return res  
+    
+    
+#     def distanceK(self, root, target, k):
+#         """
+#         :type root: TreeNode
+#         :type target: TreeNode
+#         :type k: int
+#         :rtype: List[int]
+#         """
+#         parentMap = {}
+#         self.adjecency(root,parentMap)
+        
+#         # BFS call for k direction from target
 #         q = deque()
 #         q.append(target)
 #         visited = set()
@@ -63,22 +92,4 @@ class Solution(object):
 #             res.append(node.val)
         
 #         return res
-        
     
-        q = deque()
-        q.append([target,0])
-        visited = set([target])
-        res = []
-        
-        while q:
-            node, dist = q.popleft()
-            
-            if dist == k:
-                res.append(node.val)
-            
-            for neighbor in [node.left, node.right, parentMap.get(node)]:
-                if neighbor and neighbor not in visited:
-                    q.append([neighbor, dist + 1])
-                    visited.add(neighbor)
-        
-        return res
