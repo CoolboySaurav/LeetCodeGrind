@@ -10,6 +10,13 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[List[int]]
         """
+        """
+            Why use lambda?
+            defaultdic(list) will create an instance of 
+            dictionary of list as value but is not callable 
+            on declaring nodes, hence we need lambda to make 
+            it callable
+        """
         nodes = defaultdict(lambda: defaultdict(list))
         q = deque()
         q.append([root, (0,0)])
