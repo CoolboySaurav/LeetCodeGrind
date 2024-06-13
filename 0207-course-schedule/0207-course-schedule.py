@@ -5,41 +5,66 @@ class Solution(object):
         :type prerequisites: List[List[int]]
         :rtype: bool
         """
-        
-        def dfs(node, visit, pathVisit):
-            visit[node] = 1
-            pathVisit[node] = 1
+        # DFS Striver way
+#         def dfs(node, visit, pathVisit):
+#             visit[node] = 1
+#             pathVisit[node] = 1
             
-            for i in adj[node]:
-                if not visit[i]:
-                    if dfs(i, visit, pathVisit):
-                        return True
-                elif pathVisit[i]:
-                    return True
+#             for i in adj[node]:
+#                 if not visit[i]:
+#                     if dfs(i, visit, pathVisit):
+#                         return True
+#                 elif pathVisit[i]:
+#                     return True
             
-            pathVisit[node] = 0
-            return False
+#             pathVisit[node] = 0
+#             return False
+        
+#         visit = [0]*n
+#         pathVisit = [0]*n
+#         adj = { i:[] for i in range(n)}
+        
+#         for crs, prereq in pre:
+#             adj[crs].append(prereq)
         
         
+#         for i in xrange(n):
+#             if not visit[i]:
+#                 if dfs(i, visit, pathVisit):
+#                     return False
         
+#         return True
+
+        # BFS Kahn's Algorithm
         
-        
-        visit = [0]*n
-        pathVisit = [0]*n
+        indegree = [0]*n
         adj = { i:[] for i in range(n)}
         
         for crs, prereq in pre:
             adj[crs].append(prereq)
+
+        for i in xrange(n):
+            for j in adj[i]:
+                indegree[j] += 1
         
+        q = deque()
         
         for i in xrange(n):
-            if not visit[i]:
-                if dfs(i, visit, pathVisit):
-                    return False
+            if not indegree[i]:
+                q.append(i)
+                
+        count = 0
         
-        return True
+        while q:
+            node = q.popleft()
+            
+            for i in adj[node]:
+                indegree[i] -= 1
+                if not indegree[i]:
+                    q.append(i)
+            count += 1
         
-        
+        return count == n         
         
         
         
