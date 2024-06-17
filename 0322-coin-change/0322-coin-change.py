@@ -13,6 +13,8 @@ class Solution(object):
         
         n = len(coins)
         
+        # Recursion Approach
+        
 #         def txn(ind, tot):
 #             if tot == 0:
 #                 return 1
@@ -31,31 +33,48 @@ class Solution(object):
 #         count = txn(n-1, tot)
 #         return count if count != 1e9 else -1
     
-        dp = [[-1]*(tot+1) for _ in xrange(n)]
+        # Memoization Approach
         
-        def txn(ind, tot):
+#         dp = [[-1]*(tot+1) for _ in xrange(n)]
+        
+#         def txn(ind, tot):
     
-            if ind == 0:
-                if tot%coins[ind] == 0:
-                    return tot/coins[ind]
-                else:
-                    return 1e9
-            if dp[ind][tot] != -1:
-                return dp[ind][tot]
-            pick = 1e9
-            if coins[ind] <= tot:
-                pick = 1 + txn(ind, tot - coins[ind])
-            notPick = txn(ind-1, tot)
+#             if ind == 0:
+#                 if tot%coins[ind] == 0:
+#                     return tot/coins[ind]
+#                 else:
+#                     return 1e9
+                
+#             if dp[ind][tot] != -1:
+#                 return dp[ind][tot]
+#             pick = 1e9
+#             if coins[ind] <= tot:
+#                 pick = 1 + txn(ind, tot - coins[ind])
+#             notPick = txn(ind-1, tot)
             
-            dp[ind][tot] = min(pick, notPick)
-            return dp[ind][tot]
+#             dp[ind][tot] = min(pick, notPick)
+#             return dp[ind][tot]
         
-        count = txn(n-1,tot)
-        return count if count != 1e9 else -1
+#         count = txn(n-1,tot)
+#         return count if count != 1e9 else -1
         
+        # Tabulation
         
+        dp = [[1e9]*(tot+1) for _ in xrange(n)]
         
+        for i in xrange(tot+1):
+            if i%coins[0] == 0:
+                dp[0][i] = i/coins[0]
         
+        for i in xrange(1, n):
+            for j in xrange(tot+1):
+                notPick = dp[i-1][j]
+                pick = 1e9
+                if coins[i] <= j:
+                    pick = 1 + dp[i][j - coins[i]]
+                dp[i][j] = min(pick, notPick)
+        
+        return -1 if  dp[n-1][tot] == 1e9 else dp[n-1][tot] 
         
         # Recursion 
         # def txn(ind,tot):
