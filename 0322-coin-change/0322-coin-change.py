@@ -60,21 +60,21 @@ class Solution(object):
         
         # Tabulation
         
-        dp = [[1e9]*(tot+1) for _ in xrange(n)]
+#         dp = [[1e9]*(tot+1) for _ in xrange(n)]
         
-        for i in xrange(tot+1):
-            if i%coins[0] == 0:
-                dp[0][i] = i/coins[0]
+#         for i in xrange(tot+1):
+#             if i%coins[0] == 0:
+#                 dp[0][i] = i/coins[0]
         
-        for i in xrange(1, n):
-            for j in xrange(tot+1):
-                notPick = dp[i-1][j]
-                pick = 1e9
-                if coins[i] <= j:
-                    pick = 1 + dp[i][j - coins[i]]
-                dp[i][j] = min(pick, notPick)
+#         for i in xrange(1, n):
+#             for j in xrange(tot+1):
+#                 notPick = dp[i-1][j]
+#                 pick = 1e9
+#                 if coins[i] <= j:
+#                     pick = 1 + dp[i][j - coins[i]]
+#                 dp[i][j] = min(pick, notPick)
         
-        return -1 if  dp[n-1][tot] == 1e9 else dp[n-1][tot] 
+#         return -1 if  dp[n-1][tot] == 1e9 else dp[n-1][tot] 
         
         # Recursion 
         # def txn(ind,tot):
