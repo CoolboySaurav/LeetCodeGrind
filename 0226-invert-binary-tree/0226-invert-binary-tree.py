@@ -10,16 +10,41 @@ class Solution(object):
         :type root: TreeNode
         :rtype: TreeNode
         """
-        res=[]
-        temp=None
-        def inv(root):
-            if not root:
+        def travel(node):
+            if not node:
                 return None
-            temp=root.left
-            root.left=root.right
-            root.right=temp
-            inv(root.left)
-            inv(root.right)
-            return root
-        return inv(root)
+            left = travel(node.left)
+            right = travel(node.right)
+            node.left = right
+            node.right = left
+            return node
+        
+        travel(root)
+        return root       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res=[]
+#         temp=None
+#         def inv(root):
+#             if not root:
+#                 return None
+#             temp=root.left
+#             root.left=root.right
+#             root.right=temp
+#             inv(root.left)
+#             inv(root.right)
+#             return root
+#         return inv(root)
         
