@@ -5,14 +5,24 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
-        hash1 = defaultdict(int)
+        char = set()
         
         for i in nums:
-            if i in hash1:
+            if i in char:
                 return True
-            hash1[i]=1
-        
+            char.add(i)
+            
         return False
+        
+        
+#         hash1 = defaultdict(int)
+        
+#         for i in nums:
+#             if i in hash1:
+#                 return True
+#             hash1[i]=1
+        
+#         return False
         
         
         
