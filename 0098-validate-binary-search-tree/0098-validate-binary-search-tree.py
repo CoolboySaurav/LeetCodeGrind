@@ -10,11 +10,22 @@ class Solution(object):
         :type root: TreeNode
         :rtype: bool
         """
-        def fact(node,left,right):
+        
+        def validate(node, minVal, maxVal):
             if not node:
                 return True
-            if not ((node.val>left and node.val<right)):
+            if node.val >= maxVal or node.val <= minVal:
                 return False
-            return (fact(node.left,left,node.val) and fact(node.right,node.val,right))
+            return validate(node.left, minVal, node.val) and validate(node.right, node.val, maxVal)
         
-        return fact(root,float("-inf"),float("inf"))
+        return validate(root, float("-inf"), float("inf"))
+        
+        
+#         def fact(node,left,right):
+#             if not node:
+#                 return True
+#             if not ((node.val>left and node.val<right)):
+#                 return False
+#             return (fact(node.left,left,node.val) and fact(node.right,node.val,right))
+        
+#         return fact(root,float("-inf"),float("inf"))
