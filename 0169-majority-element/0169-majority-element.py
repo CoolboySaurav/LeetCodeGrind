@@ -15,6 +15,20 @@ class Solution(object):
         # max_value = hash1[max_key]
         # return max_key
         
+        hashSet = defaultdict(int)
+        res = majority = 0
+        
+        for i in nums:
+            hashSet[i] += 1
+            
+            if hashSet[i] > majority:
+                majority = hashSet[i]
+                res =i
+        
+        return res
+        
+        
+        
         n = len(nums)
         nums.sort()
         
