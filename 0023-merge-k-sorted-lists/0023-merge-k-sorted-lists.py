@@ -16,12 +16,13 @@ class Solution(object):
         temp = dummy
         
         heap = []
-        
+        # O(klogk) time complexity 
         for i in xrange(len(lists)):
             if lists[i]:
                 val = [lists[i].val, lists[i]]
                 heapq.heappush(heap, val)
-            
+        # While loop will run for N*K times plus since heap will have at max k elements at any given time
+        # So time complexity is O(N*K*logk)
         while heap:
             val, node = heapq.heappop(heap)
             temp.next = node
