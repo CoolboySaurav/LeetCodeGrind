@@ -5,6 +5,24 @@ class Solution(object):
         :rtype: bool
         """
         
+        # Greedy Solution
+        
+        leftMin, leftMax = 0, 0
+        
+        for c in s:
+            if c == "(":
+                leftMin, leftMax = leftMin + 1, leftMax + 1
+            elif c == ")":
+                leftMin, leftMax = leftMin - 1, leftMax - 1
+            else:
+                leftMin, leftMax = leftMin - 1, leftMax + 1
+            if leftMax < 0:
+                return False
+            elif leftMin < 0:
+                leftMin = 0
+        
+        return True if leftMin == 0 else False
+        
         # Dynamic Programming
         n = len(s)
         dp = [[-1]*(n+1) for _ in xrange(n+1)]
