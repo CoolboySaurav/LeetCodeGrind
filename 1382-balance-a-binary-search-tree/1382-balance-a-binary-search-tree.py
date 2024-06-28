@@ -13,7 +13,7 @@ class Solution(object):
         
         
         res = []
-        # Preorder Traversal
+        # Inorder Traversal to obtain the sorted array for the given BST
         
         def travel(node):
             if not node:
@@ -25,6 +25,7 @@ class Solution(object):
         
         travel(root)
         
+        # Build a Balanced Binary Tree from the given sorted array
         l, r = 0, len(res) - 1
         
         def build(left, right):
