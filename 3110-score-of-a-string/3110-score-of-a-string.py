@@ -7,7 +7,6 @@ class Solution(object):
             
         
         total = 0
-        bit = 1
         
         for i in xrange(1,len(s)):
             diff = abs(ord(s[i]) - ord(s[i-1]))
