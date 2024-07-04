@@ -42,10 +42,10 @@ class Solution(object):
         for r in range(N):
             for c in range(N):
                 if grid[r][c] == 1:
-                    dfs(r, c)
+                    dfs(r, c) # DFS to travel all the elements of found island
                     found = True
                     break
             if found:
                 break
         
-        return bfs()
+        return bfs() # BFS to travel optimally from one island to other
