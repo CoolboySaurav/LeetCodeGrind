@@ -8,6 +8,20 @@ class Solution(object):
         dictionary  = set(wordDict)
         n = len(s)
         
+        # Tabulation Approach
+        dp = [False]*(n+1)
+        dp[n] = True
+        
+        for i in xrange(n-1, -1, -1):
+            for j in xrange(i, n):
+                if s[i:j+1] in dictionary:
+                    if dp[j + 1]:
+                        dp[i] = True
+                        break
+        return dp[0]       
+        
+        
+        
         # Memoization Approach
         dp = [-1]*n
     
