@@ -16,11 +16,11 @@ class MedianFinder(object):
         """
         heapq.heappush(self.small, -1*num)
         
-        if self.small and self.large and (-1* self.small[0]) > self.large[0]:
+        if self.small and self.large and (-1* self.small[0]) > self.large[0]: # If max of small is bigger than min of large, pop from small and push to large
             val = heapq.heappop(self.small)
             heapq.heappush(self.large, -1*val)
             
-        if len(self.small) > len(self.large) + 1:
+        if len(self.small) > len(self.large) + 1: # Max len diff can only be upto 1 between both heap structures
             val = -1 * heapq.heappop(self.small)
             heapq.heappush(self.large, val)
             
