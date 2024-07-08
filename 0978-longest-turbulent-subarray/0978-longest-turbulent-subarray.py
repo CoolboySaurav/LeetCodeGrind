@@ -5,6 +5,24 @@ class Solution(object):
         :rtype: int
         """
         n = len(arr)
+        
+        # DP Tabulation
+        
+#         ans = [0]*n
+#         ans[0] = 1
+#         maxLen = 0
+        
+#         for i in xrange(1,n-1):
+#             if arr[i-1] < arr[i] and arr[i] > arr[i+1]:
+#                 ans[i] = ans[i-1] + 1
+#             elif arr[i-1] > arr[i] and arr[i] < arr[i+1]:
+#                 ans[i] = ans[i-1] + 1
+#             else:
+#                 ans[i] = 1
+#             maxLen = max(maxLen, ans[i])    
+            
+#         return maxLen
+        
         l, r = 0, 1
         res, prev = 1, ""
         
