@@ -24,11 +24,8 @@ class Solution(object):
         leftToRight = True
         
         while n > 1:
-            if n % 2:
+            if leftToRight or n % 2 == 1:
                 head += step
-            else:
-                if leftToRight:
-                    head += step
             step *= 2
             n //= 2
             leftToRight = not leftToRight
