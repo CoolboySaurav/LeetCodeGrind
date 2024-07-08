@@ -7,7 +7,7 @@ class Solution(object):
         n = len(costs)
         l , r= 0, n - 1
         
-        costs = sorted(costs, key = lambda x: (x[1] - x[0]))
+        costs.sort(key = lambda x: (x[1] - x[0]))
         totCost = 0
         
         while l <= r:
