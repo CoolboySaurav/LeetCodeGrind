@@ -11,8 +11,10 @@ class Solution(object):
         :type key: int
         :rtype: TreeNode
         """
-        
-        def findLastRight(node):
+        """
+            We connect the left branch to the parent of the key node and then we find the greatest node of that left branch and connect the right branch of key node to that node's right
+        """
+        def findLastRight(node): # Find the last rightmost node of the given node
             if not node.right:
                 return node
             return findLastRight(node.right)
