@@ -11,8 +11,7 @@ class Solution(object):
         heap=[]
         for i,l in enumerate(points):
             p=(l[0]**2)+(l[1]**2)
-            heap.append([p,l[0],l[1]])
-        heapq.heapify(heap)
+            heapq.heappush(heap, [p,l[0],l[1]])
         while k>0:
             p,x,y=heapq.heappop(heap)
             res.append([x,y])
