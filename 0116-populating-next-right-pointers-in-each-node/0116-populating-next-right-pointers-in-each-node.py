@@ -24,9 +24,7 @@ class Solution(object):
             
             for i in xrange(L):
                 node = q.popleft()
-                if i == L - 1:            
-                    node.next = None
-                else:
+                if i < L - 1:            
                     node.next = q[0]
                 if node.left:
                     q.append(node.left)
