@@ -18,6 +18,29 @@ class Solution(object):
         
         if not head:
             return None
+        def findmiddle(head):
+            prev, slow, fast = None, head, head
+            while fast and fast.next:
+                prev = slow
+                slow = slow.next
+                fast = fast.next.next
+            if prev:
+                prev.next = None
+            return slow
+        mid = findmiddle(head)
+        root = TreeNode(mid.val)
+        if mid == head:
+            return root
+        root.left = self.sortedListToBST(head)
+        root.right = self.sortedListToBST(mid.next)
+        return root
+    
+    
+        
+        
+        # My solution with higher memory usage via array storing linked list nodes
+        if not head:
+            return None
         
         arr = []
         temp = head
