@@ -4,6 +4,20 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        #Bayer - Moor Algorithm
+    
+        count=0
+        number=None
+        for num in nums:
+            if count==0:
+                number=num
+            if num==number:
+                count+=1
+            else:
+                count-=1
+        return number
+        
+        
         # num=count1=count2=0
         # hash1={}
         # for i in range(len(nums)):
