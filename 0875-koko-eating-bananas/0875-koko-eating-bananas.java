@@ -24,7 +24,7 @@ class Solution {
         
         // Calculate total days needed at speed k
         for (double pile : piles) {
-            days += Math.ceil(pile / (double)(k));
+            days += Math.ceil(pile / (k));
         }
         
         return days <= h; // Return whether it fits within the allowed hours
