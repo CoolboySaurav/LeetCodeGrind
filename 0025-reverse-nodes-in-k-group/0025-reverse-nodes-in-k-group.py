@@ -1,44 +1,45 @@
 # Definition for singly-linked list.
-# class ListNode(object):
+# class ListNode:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution(object):
-    def travelKNodes(self, node, k):
+class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        prevNode = None
+        temp = head
+        
+        while temp:
+            kthNode = self.getKthNode(temp, k)
+            if not kthNode:
+                prevNode.next = temp
+                break
+            nxtNode = kthNode.next
+            kthNode.next = None
+            self.reverse(temp)
+            
+            if temp == head:
+                head = kthNode
+            else:
+                prevNode.next = kthNode
+            prevNode = temp
+            temp = nxtNode
+        return head
+    
+    def reverse(self, node):
+        prev = temp = None
+        
+        while node:
+            temp = node.next
+            node.next = prev
+            prev = node
+            node = temp
+    
+    def getKthNode(self, node, k):
+        k -= 1
         
         while node and k > 0:
+            k -= 1
             node = node.next
-            k -= 1
-        return [node, k]
-    
-    def reverse(self, node, k): # Reverse k nodes which return head of the reversed list
-        prev = None  
-        cur = node
-        while k > 0:
-            temp = cur.next
-            cur.next = prev
-            prev = cur
-            cur = temp 
-            k -= 1
-        return [prev, node] # [start, end]
-    
-    def reverseKGroup(self, head, k):
-        """
-        :type head: ListNode
-        :type k: int
-        :rtype: ListNode
-        """    
-        if not head or k == 1:
-            return head
         
-        p1 = p2 = head
-        temp = dummy = ListNode(0)
+        return node
         
-        while p1:
-            p2, count = self.travelKNodes(p1, k)
-            if not p2 and count > 0:
-                temp.next = p1
-                break
-            temp.next, temp = self.reverse(p1, k)
-            p1 = p2
-        return dummy.next
