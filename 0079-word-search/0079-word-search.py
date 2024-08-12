@@ -1,12 +1,5 @@
-class Solution(object):
-    def exist(self, board, word):
-        """
-        :type board: List[List[str]]
-        :type word: str
-        :rtype: bool
-        """
-        # Optimization can be made with comparing the count of alphabets in board to that of words. If found less means 
-        # a straightforward False
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
         R=len(board)
         C=len(board[0])
         path=set()
