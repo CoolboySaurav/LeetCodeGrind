@@ -1,45 +1,35 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 class Solution {
-    public List<String> letterCombinations(String digits) {
-        // Create and populate the phone map
-        Map<Character, String> phone = new HashMap<>();
-        phone.put('2', "abc");
-        phone.put('3', "def");
-        phone.put('4', "ghi");
-        phone.put('5', "jkl");
-        phone.put('6', "mno");
-        phone.put('7', "pqrs");
-        phone.put('8', "tuv");
-        phone.put('9', "wxyz");
+    private ArrayList<String> temp;
 
-        List<String> result = new ArrayList<>();
-
-        // Base case
-        if (digits == null || digits.length() == 0) return result;
-
-        // Start the recursion
-        helper(0, digits, result, "", phone);
-
-        return result; // Return the result list
-    }
-
-    private void helper(int index, String digits, List<String> result, String path, Map<Character, String> phone) {
-        // Base Case
-        if (index == digits.length()) {
-            result.add(path);
+    public void solve(int idx, String digits, StringBuilder list, HashMap<Integer, String> map) {
+        if (idx >= digits.length()) {
+            temp.add(list.toString());
             return;
         }
-
-        // Get the letters corresponding to the current digit
-        String letters = phone.get(digits.charAt(index));
-
-        for (char c : letters.toCharArray()) {
-            // Recursive call with updated path
-            helper(index + 1, digits, result, path + c, phone);
+        int num = digits.charAt(idx) - '0';
+        String str = map.get(num);
+        for (int i = 0; i < str.length(); i++) {
+            list.append(str.charAt(i));
+            solve(idx + 1, digits, list, map);
+            list.deleteCharAt(list.length() - 1);
         }
+    }
+
+    public List<String> letterCombinations(String digits) {
+        if (digits.length() == 0) return new ArrayList<>();
+        temp = new ArrayList<>();
+        StringBuilder list = new StringBuilder();
+        HashMap<Integer, String> map = new HashMap<>();
+        map.put(2, "abc");
+        map.put(3, "def");
+        map.put(4, "ghi");
+        map.put(5, "jkl");
+        map.put(6, "mno");
+        map.put(7, "pqrs");
+        map.put(8, "tuv");
+        map.put(9, "wxyz");
+
+        solve(0, digits, list, map);
+        return temp;
     }
 }
