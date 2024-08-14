@@ -1,4 +1,8 @@
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -16,29 +20,31 @@ import java.util.Collections;
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        boolean left = true;
+        boolean leftToRight = true;
         Queue<TreeNode> q = new LinkedList<>();
-        q.add(root);
+        if (root != null) q.add(root);
         List<List<Integer>> res = new ArrayList<>();
     
         while (!q.isEmpty()){
-            int Len = q.size();
+            int len = q.size();
             List<Integer> level = new ArrayList<>();
             
-            for (int i = 0; i < Len; i++){
+            for (int i = 0; i < len; i++){
                 TreeNode node = q.poll();
                 
-                if (node != null){
+                // Add node value to the level list
+                if (leftToRight) {
                     level.add(node.val);
-                    q.add(node.left);
-                    q.add(node.right);
+                } else {
+                    level.add(0, node.val); // Add to the beginning of the list
                 }
+                
+                if (node.left != null) q.add(node.left);
+                if (node.right != null) q.add(node.right);
             }
-            if (level.isEmpty()) break;
-            if (!left){
-                Collections.reverse(level);
-            }
-            left = !left;
+            
+            // Toggle the direction
+            leftToRight = !leftToRight;
             res.add(level);
         }
         return res;
