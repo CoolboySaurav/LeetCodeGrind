@@ -20,7 +20,20 @@ class Solution {
     
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
-        preorder(root, result);
+        //preorder(root, result);
+        Stack <TreeNode> st = new Stack<>();
+        TreeNode cur = root;
+        
+        while ((!st.isEmpty()) || (cur != null)){
+            while (cur != null){
+                result.add(cur.val);
+                st.push(cur);
+                cur = cur.left;
+            }
+            cur = st.peek().right;
+            st.pop();
+        }
+        
         return result;
     }
     
