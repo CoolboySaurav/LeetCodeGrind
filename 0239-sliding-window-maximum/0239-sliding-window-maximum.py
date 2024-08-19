@@ -1,28 +1,25 @@
-class Solution(object):
-    def maxSlidingWindow(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: List[int]
-        """
+from collections import deque
+from typing import List
+
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        q = deque()
         res = []
-        l = r = 0
-        q = deque() # Index
-        # queue will store elements in decreasing order for the given sliding window
-        while r < len(nums):
-            # Pop elements of queue if they are smaller than nums[r]
-            while q and nums[q[-1]] < nums[r]:
+        
+        for i in range(len(nums)):
+            # Remove elements from the deque that are out of the current window
+            if q and q[0] < i - k + 1:
+                q.popleft()
+            
+            # Remove elements from the deque that are less than the current element
+            while q and nums[q[-1]] < nums[i]:
                 q.pop()
-            q.append(r)
             
-            # Out of bound condition for l pointer
-            if q[0] < l:
-                q.popleft() 
+            # Add the current element index to the deque
+            q.append(i)
             
-            if (r + 1) >= k:
+            # Append the maximum element of the current window to the result
+            if i >= k - 1:
                 res.append(nums[q[0]])
-                l += 1
-            r += 1
         
         return res
-            
