@@ -1,16 +1,5 @@
-class Solution(object):
-    def minWindow(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: str
-        """
-        
-        
-        """
-        Have a hashmap for count of string t ready, then in string s, go on decrementing for every character you see, if count of                     character goes 0, that means we have fulfilled one required character. when count of fulfilled character equals length of t, then             shring the window with l while incrementing all the values of l and if seen count goes above 0 that means we have shrunk the window           too much
-        """
-        
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
         start = -1 
         minLen = float(1e8)
         count = 0
