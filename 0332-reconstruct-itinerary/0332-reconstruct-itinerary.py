@@ -11,10 +11,10 @@ class Solution:
         res = []
         
         def dfs(node):
-            dest = adj[node]
+            #dest = adj[node]
             
-            while dest:
-                nxt = dest.pop()
+            while adj[node]:
+                nxt = adj[node].pop()
                 dfs(nxt)
             
             res.append(node)
