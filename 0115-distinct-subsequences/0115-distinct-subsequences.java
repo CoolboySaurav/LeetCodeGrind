@@ -9,12 +9,30 @@ class Solution {
             return 0;
         }
         
-        int[][] dp = new int[m][n];
-        for (int[] rows : dp) {
-            Arrays.fill(rows, -1);
-        }
+        int [] prev = new int [n + 1];
+        prev[0] = 1;
         
-        return helper(m - 1, n - 1, s, t, dp);
+        for (int i = 1; i < m + 1; i++){
+            int [] cur = new int [n + 1];
+            cur[0] = 1;
+            for (int j = 1; j < n + 1; j++){
+                if (s.charAt(i - 1) == t.charAt(j - 1)){
+                    cur[j] = prev[j - 1] + prev[j];
+                }
+                else{
+                    cur[j] = prev[j];
+                }
+            }
+            prev = cur;
+        }
+        return prev[n];
+        
+//         int[][] dp = new int[m][n];
+//         for (int[] rows : dp) {
+//             Arrays.fill(rows, -1);
+//         }
+        
+//         return helper(m - 1, n - 1, s, t, dp);
     }
 
     private int helper(int i, int j, String s, String t, int[][] dp) {
