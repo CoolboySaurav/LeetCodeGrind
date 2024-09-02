@@ -16,7 +16,24 @@ class Solution(object):
                 if prices[i] > prices[i - 1]:
                     max_profit += prices[i] - prices[i - 1]
             return max_profit
-
+        
+        # Tabulation
+        dp = [[[0] * (k + 1) for _ in range(2)] for _ in range(n + 1)]
+        # Base case logic
+        '''
+            if capacity is 0 mean no more txn so other two index put 0
+            if index is n means end of the array so other two index put 0
+        '''
+        for i in xrange(n - 1, -1, -1):
+            for buy in range(2):
+                for cap in range(1, k + 1):
+                    if buy == 0:
+                        dp[i][buy][cap] = max( dp[i + 1][0][cap], - prices[i] + dp[i + 1][1][cap])
+                    else:
+                        dp[i][buy][cap] = max(dp[i + 1][1][cap], prices[i] + dp[i + 1][0][cap - 1])
+        return dp[0][0][cap]
+        
+        # Memoization
         dp = [[[-1] * (k + 1) for _ in range(2)] for _ in range(n)]
         
         def solve(i, b, txn):
